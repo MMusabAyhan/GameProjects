@@ -40,7 +40,15 @@ void ATankYouTriggerVolume::OnBeginOverlap(AActor* OverlappingActor, AActor* Oth
 
 			if (BossBPClass)
 			{
-				GetWorld()->SpawnActor<ATurret>(BossBPClass, BossSpawnLocation, BossSpawnRotation);
+				ATurret* myBoss = nullptr;
+
+				myBoss = GetWorld()->SpawnActor<ATurret>(BossBPClass, BossSpawnLocation, BossSpawnRotation);
+
+				// If Boss created w/o an error
+				if (myBoss)
+				{
+					myBoss->Tags.Add(TEXT("Boss"));
+				}				
 			}
 		}
 	}

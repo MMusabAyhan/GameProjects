@@ -32,8 +32,9 @@ private:
 	UFUNCTION(BlueprintCallable)
 		void HandleGameStart();
 
-	int32 TotalNumberofTurrets;
+	//Taken out for now since no need
+	//int32 TotalNumberofTurrets;
 
-	int32 GetTotalTowerCount();
+	//int32 GetTotalTowerCount();
 };
 

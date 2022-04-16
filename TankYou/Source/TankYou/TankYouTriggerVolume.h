@@ -36,4 +36,6 @@ private:
 	FVector BossSpawnLocation = FVector(1140.f, -1040.f, 9571.f);
 	FRotator BossSpawnRotation = FRotator(0.f, 90.f, 0.f);
 
+
+
 };

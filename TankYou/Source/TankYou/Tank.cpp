@@ -10,6 +10,7 @@
 #include "Math/UnrealMathUtility.h"
 #include "Engine/TriggerVolume.h"
 #include "Components/CapsuleComponent.h"
+//#include "DrawDebugHelpers.h"
 
 // Sets default values
 ATank::ATank()
@@ -45,6 +46,8 @@ void ATank::Tick(float DeltaTime)
 	{
 		FHitResult Hit;
 		TankPlayerController->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, Hit);
+		//DrawDebugSphere(GetWorld(), Hit.Location, 20, 30, FColor::Red);
+
 
 		RotateTurret(Hit.ImpactPoint);
 

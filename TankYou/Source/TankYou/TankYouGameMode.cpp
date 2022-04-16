@@ -20,7 +20,8 @@ void ATankYouGameMode::HandleGameStart()
 
 	Tank = Cast<ATank>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 
-	TotalNumberofTurrets = GetTotalTowerCount();
+	//Taken out for now since no need
+	//TotalNumberofTurrets = GetTotalTowerCount();
 
 	TankYouPlayerController = Cast<ATankYouPlayerController>(UGameplayStatics::GetPlayerController(this, 0));
 
@@ -52,13 +53,16 @@ void ATankYouGameMode::HandleGameStart()
 	}
 }
 
-int32 ATankYouGameMode::GetTotalTowerCount()
-{
-	TArray<AActor*> TurretArray;
-	UGameplayStatics::GetAllActorsOfClass(this, ATurret::StaticClass(), TurretArray);
+// Taken out of game since a boss is added. No need to count all towers anymore. But in case we may want
+//  to use it again in future, I leave it as comment.
 
-	return TurretArray.Num();
-}
+//int32 ATankYouGameMode::GetTotalTowerCount()
+//{
+//	TArray<AActor*> TurretArray;
+//	UGameplayStatics::GetAllActorsOfClass(this, ATurret::StaticClass(), TurretArray);
+//
+//	return TurretArray.Num();
+//}
 
 void ATankYouGameMode::ActorDied(AActor* ActorDied)
 {
@@ -77,10 +81,13 @@ void ATankYouGameMode::ActorDied(AActor* ActorDied)
 	else if (ATurret* DestroyedTurret = Cast<ATurret>(ActorDied))
 	{
 		DestroyedTurret->HandleDestruction();
-		TotalNumberofTurrets--;
 
-		// or BossTurred dead
-		if (TotalNumberofTurrets == 0 || DestroyedTurret->ActorHasTag(TEXT("Boss")))
+		// Taken out of game since a boss is added. No need to count all towers anymore. But in case we may want
+		//  to use it again in future, I leave it as comment.
+		//TotalNumberofTurrets--; 
+
+		// Game ends when Boss Turret dies
+		if (DestroyedTurret->ActorHasTag(TEXT("Boss")))
 		{
 			TankYouPlayerController->GameHasEnded(Tank, true);
 			bGameOver = true;
